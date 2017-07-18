@@ -25,7 +25,7 @@ server.post('/api/todos', async (request, response) => {
     return response.json(todo);
 });
 server.get('/api/todos/:id', (request, response) => {
-    let id = request.params.id;
+    let _id = request.params.id;
     let todo = todos.find(todo => todo._id === _id);
     if (!todo) {
 
@@ -35,7 +35,7 @@ server.get('/api/todos/:id', (request, response) => {
     return response.json(todo);
 });
 server.put('/api/todos/:id', async (request, response) => {
-    var id = request.params.id;
+    var _id = request.params.id;
     var todos = request.body;
     var existing = await Todo.findOne({ _id: request.params.id });
     existing.name = todos.name;
@@ -48,7 +48,7 @@ server.delete('/api/todos/:id', async (request, response) => {
     var todo = await Todo.findOne({ _id: request.params.id });
     var todoAway = await Todo.deleteOne({ _id: request.params.id });
 
-
+    return response.json(todo);
 });
 server.listen(3000, function () {
     console.log('Express running on http://localhost:3000/.')
